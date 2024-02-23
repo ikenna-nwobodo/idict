@@ -8,6 +8,7 @@ function Home() {
   const [data, setData] = useState([]);
   const [search, setsearch] = useState(false);
   const [fetched, setfetched] = useState();
+
   const handleEnter = (event) => {
     if (event.key === "Enter") {
       setWord(text);
@@ -37,6 +38,7 @@ function Home() {
 
     setsearch(false);
   }
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -45,16 +47,14 @@ function Home() {
       transition={{ duration: 2, ease: "easeInOut" }}
       className="w-11/12 min-h-screen flex flex-col gap-8 justify-center items-center pb-20"
     >
-      {!fetched && (
-        <input
-          type="text"
-          value={text}
-          onChange={(event) => setText(event.target.value)}
-          onKeyDown={handleEnter}
-          placeholder="Search"
-          className="py-3 mt-4 px-3 md:px-5 border-2 border-white/40 outline-none outline-0 rounded-lg bg-transparent w-11/12 md:w-10/12 placeholder:text-sm"
-        />
-      )}
+      <input
+        type="text"
+        value={text}
+        onChange={(event) => setText(event.target.value)}
+        onKeyDown={handleEnter}
+        placeholder="Search"
+        className="py-3 mt-4 px-3 md:px-5 border-2 border-white/40 outline-none outline-0 rounded-lg bg-transparent w-11/12 md:w-10/12 placeholder:text-sm"
+      />
 
       {fetched && <Definitions word={data} />}
     </motion.div>
